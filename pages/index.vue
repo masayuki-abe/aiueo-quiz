@@ -11,7 +11,7 @@ import aiueoArray from 'assets/js/AiueoArray'
 export default {
   data () {
     return {
-      baseArrays: [],
+      baseArrays: aiueoArray,
       question: '',
       answer: []
     }
@@ -41,7 +41,7 @@ export default {
       this.question = this.baseArrays[this.getRandomArrayNumber].ja
     },
     getAnswer () {
-      this.answer = this.baseArrays.splice(this.getRandomArrayNumber, 1)
+      this.answer = this.baseArrays.filter((_, index) => index === this.getRandomArrayNumber)
     }
   }
 }
