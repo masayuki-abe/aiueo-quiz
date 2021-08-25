@@ -1,19 +1,13 @@
 <template>
   <div>
-    <p :class="questionClass">
-      Question：{{ question }}
+    <p :class="questionClassText">
+      Question：{{ questionText }}
     </p>
     <ul class="answer-list">
-      <!-- <li class="answer">
-        {{ answerArray }}
-      </li> -->
-      <li v-for="questionArray in shuffleArray" :key="questionArray.en" :class="questionArray.en" @click="checkAnswer">
-        {{ questionArray.list[randomNumber] }}
+      <li v-for="questionArray in shuffleArray" ref="answerList" :key="questionArray.en" :class="questionArray.en" @click="checkAnswer">
+        {{ questionArray.list[randomeAnswerNumber] }}
       </li>
     </ul>
-    <p style="color: red;">
-      {{ concatArray }}
-    </p>
   </div>
 </template>
 
@@ -22,19 +16,19 @@ import aiueoArray from 'assets/js/AiueoArray'
 export default {
   data () {
     return {
-      getBaseArray: aiueoArray,
-      answerList: [],
-      notAnswer: [],
-      shuffleArray: [],
+      getBaseArray: aiueoArray, // あいうえおの配列
+      questionText: '', // 問題になる五十音
+      questionClassText: '', // 問題になる五十音と正解を紐付けるためのclass
+      notAnswerArray: [],
       sliceArray: [],
-      concatArray: []
+      concatArray: [],
+      shuffleArray: [],
+      newRandomArrayNumber: Number,
+      randomeAnswerNumber: Number,
+      nogood: true
     }
   },
   computed: {
-    // あいうえお配列を呼び出し
-    // getBaseArray () {
-    //   return aiueoArray
-    // },
     // あいうえお配列からランダムで（配列の番号を）抽出する
     getRandomArrayNumber () {
       return Math.floor(Math.random() * this.getBaseArray.length)
@@ -62,20 +56,25 @@ export default {
     // 0-2の乱数
     randomNumber () {
       return Math.floor(Math.random() * 3)
-    },
-    concat () {
-      const concat = this.importArray()
-      return concat
     }
   },
   mounted () {
-    this.sliceArray = this.notAnswerArrays.slice(0, 3)
-    this.concatArray = this.sliceArray.concat(this.getBaseArray[this.getRandomArrayNumber])
-    this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
+    this.intoData()
+    this.intoAnswers()
   },
   methods: {
-    importArray () {
-      this.notAnswer = this.notAnswerArrays
+    // データを取得して代入
+    intoData () {
+      this.questionText = this.question
+      this.questionClassText = this.questionClass
+      this.randomeAnswerNumber = this.randomNumber
+      this.notAnswerArray = this.notAnswerArrays
+    },
+    // 初期にマウントするためのメソッド
+    intoAnswers () {
+      this.sliceArray = this.notAnswerArrays.slice(0, 3)
+      this.concatArray = this.sliceArray.concat(this.getBaseArray[this.getRandomArrayNumber])
+      this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
     },
     // 配列をランダムに並び替えるメソッド
     shuffle (array) {
@@ -87,11 +86,22 @@ export default {
       }
       return array
     },
-    checkAnswer () {
-      if (this.questionClass === this.shuffleArray.en) {
-        alert('ok')
+    checkAnswer (e) {
+      const clickClass = e.currentTarget.getAttribute('class')
+      // const answerLists = this.$refs.answerList
+      if (this.questionClassText === clickClass) {
+        const ngList = document.querySelectorAll('.ng')
+        this.newRandomArrayNumber = Math.floor(Math.random() * this.getBaseArray.length)
+        this.randomeAnswerNumber = Math.floor(Math.random() * 3)
+        this.questionText = this.getBaseArray[this.newRandomArrayNumber].ja
+        this.questionClassText = this.getBaseArray[this.newRandomArrayNumber].en
+        this.notAnswerArray = this.getBaseArray.filter((_, index) => index !== this.newRandomArrayNumber)
+        this.sliceArray = this.notAnswerArray.slice(0, 3)
+        this.concatArray = this.sliceArray.concat(this.getBaseArray[this.newRandomArrayNumber])
+        this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
+        ngList.classList.remove('ng')
       } else {
-        alert('ng')
+        e.currentTarget.classList.add('ng')
       }
     }
   }
