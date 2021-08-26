@@ -4,8 +4,17 @@
       Question：{{ questionText }}
     </p>
     <ul class="answer-list">
-      <li v-for="questionArray in shuffleArray" ref="answerList" :key="questionArray.en" :class="questionArray.en" @click="checkAnswer">
-        {{ questionArray.list[randomeAnswerNumber] }}
+      <li v-for="(questionArray) in shuffleArray" :key="questionArray.en" :class="questionArray.en">
+        <template v-if="questionClassText === questionArray.en">
+          <p ref="answerList" class="ok" @click="checkAnswer">
+            {{ questionArray.list[randomeAnswerNumber] }}
+          </p>
+        </template>
+        <template v-else>
+          <p ref="answerNgList" class="ng" @click="checkAnswer">
+            {{ questionArray.list[randomeAnswerNumber] }}
+          </p>
+        </template>
       </li>
     </ul>
   </div>
@@ -23,6 +32,7 @@ export default {
       sliceArray: [],
       concatArray: [],
       shuffleArray: [],
+      clickNg: [],
       newRandomArrayNumber: Number,
       randomeAnswerNumber: Number,
       nogood: true
@@ -86,11 +96,10 @@ export default {
       }
       return array
     },
-    checkAnswer (e) {
+    checkAnswer (e, index) {
       const clickClass = e.currentTarget.getAttribute('class')
-      // const answerLists = this.$refs.answerList
-      if (this.questionClassText === clickClass) {
-        const ngList = document.querySelectorAll('.ng')
+      // const answerNgLists = this.$refs.answerNgList
+      if (clickClass === 'ok') {
         this.newRandomArrayNumber = Math.floor(Math.random() * this.getBaseArray.length)
         this.randomeAnswerNumber = Math.floor(Math.random() * 3)
         this.questionText = this.getBaseArray[this.newRandomArrayNumber].ja
@@ -99,9 +108,9 @@ export default {
         this.sliceArray = this.notAnswerArray.slice(0, 3)
         this.concatArray = this.sliceArray.concat(this.getBaseArray[this.newRandomArrayNumber])
         this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
-        ngList.classList.remove('ng')
+        // answerNgLists.classList.remove('none')
       } else {
-        e.currentTarget.classList.add('ng')
+        // e.currentTarget.classList.add('none')
       }
     }
   }
