@@ -4,14 +4,14 @@
       Question：{{ questionText }}
     </p>
     <ul class="answer-list">
-      <li v-for="(questionArray) in shuffleArray" :key="questionArray.en" :class="questionArray.en">
+      <li v-for="questionArray in shuffleArray" :key="questionArray.en" :class="questionArray.en">
         <template v-if="questionClassText === questionArray.en">
-          <p ref="answerList" class="ok" @click="checkAnswer">
+          <p @click="okAnswer">
             {{ questionArray.list[randomeAnswerNumber] }}
           </p>
         </template>
         <template v-else>
-          <p ref="answerNgList" class="ng" @click="checkAnswer">
+          <p ref="ngAnswers" id="ng" class="ng" @click="ngAnswer">
             {{ questionArray.list[randomeAnswerNumber] }}
           </p>
         </template>
@@ -35,7 +35,7 @@ export default {
       clickNg: [],
       newRandomArrayNumber: Number,
       randomeAnswerNumber: Number,
-      nogood: true
+      good: ''
     }
   },
   computed: {
@@ -96,22 +96,20 @@ export default {
       }
       return array
     },
-    checkAnswer (e, index) {
-      const clickClass = e.currentTarget.getAttribute('class')
-      // const answerNgLists = this.$refs.answerNgList
-      if (clickClass === 'ok') {
-        this.newRandomArrayNumber = Math.floor(Math.random() * this.getBaseArray.length)
-        this.randomeAnswerNumber = Math.floor(Math.random() * 3)
-        this.questionText = this.getBaseArray[this.newRandomArrayNumber].ja
-        this.questionClassText = this.getBaseArray[this.newRandomArrayNumber].en
-        this.notAnswerArray = this.getBaseArray.filter((_, index) => index !== this.newRandomArrayNumber)
-        this.sliceArray = this.notAnswerArray.slice(0, 3)
-        this.concatArray = this.sliceArray.concat(this.getBaseArray[this.newRandomArrayNumber])
-        this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
-        // answerNgLists.classList.remove('none')
-      } else {
-        // e.currentTarget.classList.add('none')
-      }
+    okAnswer () {
+      this.newRandomArrayNumber = Math.floor(Math.random() * this.getBaseArray.length)
+      this.randomeAnswerNumber = Math.floor(Math.random() * 3)
+      this.questionText = this.getBaseArray[this.newRandomArrayNumber].ja
+      this.questionClassText = this.getBaseArray[this.newRandomArrayNumber].en
+      this.notAnswerArray = this.getBaseArray.filter((_, index) => index !== this.newRandomArrayNumber)
+      this.sliceArray = this.notAnswerArray.slice(0, 3)
+      this.concatArray = this.sliceArray.concat(this.getBaseArray[this.newRandomArrayNumber])
+      this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
+      // answerNgLists.classList.remove('none')
+      document.getElementById('ng').classList.remove('ng')
+    },
+    ngAnswer (e) {
+      e.currentTarget.className = 'active'
     }
   }
 }
