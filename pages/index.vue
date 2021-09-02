@@ -11,7 +11,7 @@
           </p>
         </template>
         <template v-else>
-          <p ref="ngAnswers" id="ng" class="ng" @click="ngAnswer">
+          <p ref="ngAnswers" class="ng" @click="ngAnswer">
             {{ questionArray.list[randomeAnswerNumber] }}
           </p>
         </template>
@@ -106,7 +106,12 @@ export default {
       this.concatArray = this.sliceArray.concat(this.getBaseArray[this.newRandomArrayNumber])
       this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
       // answerNgLists.classList.remove('none')
-      document.getElementById('ng').classList.remove('ng')
+      const ngAns = document.querySelectorAll('.active')
+      console.log(ngAns)
+      ngAns.forEach(function (target) {
+        target.classList.remove('active')
+      })
+      // document.getElementById('ng').classList.remove('active')
     },
     ngAnswer (e) {
       e.currentTarget.className = 'active'
