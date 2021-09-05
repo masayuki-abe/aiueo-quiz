@@ -1,17 +1,21 @@
 <template>
   <div>
-    <p :class="questionClassText">
-      Question：{{ questionText }}
+    <p class="question-text" :class="questionClassText">
+      したのひらがなからはじまる<br>
+      えをえらぼう！<br>
+      <span>{{ questionText }}</span>
     </p>
     <ul class="answer-list">
       <li v-for="questionArray in shuffleArray" :key="questionArray.en" :class="questionArray.en">
         <template v-if="questionClassText === questionArray.en">
           <p @click="okAnswer">
+            <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
             {{ questionArray.list[randomeAnswerNumber] }}
           </p>
         </template>
         <template v-else>
           <p ref="ngAnswers" class="ng" @click="ngAnswer">
+            <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
             {{ questionArray.list[randomeAnswerNumber] }}
           </p>
         </template>
@@ -119,3 +123,55 @@ export default {
   }
 }
 </script>
+
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.question-text{
+  padding: 1em 0;
+  font-size: 20px;
+  text-align: center;
+}
+.question-text span{
+  display: block;
+  padding-top: .5em;
+  font-size: 64px;
+  text-align: center;
+  line-height: 1;
+}
+.answer-list{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+.answer-list li{
+  width: 45%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px #efefef solid;
+  text-align: center;
+}
+.answer-list li img{
+  object-fit: contain;
+  width: auto;
+  max-width: 100%;
+  height: 200px;
+}
+.answer-list li p.active{
+  position: relative;
+}
+.answer-list li p.active::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.7);
+}
+</style>
