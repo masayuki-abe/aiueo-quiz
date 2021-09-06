@@ -9,15 +9,21 @@
       <li v-for="questionArray in shuffleArray" :key="questionArray.en" :class="questionArray.en">
         <template v-if="questionClassText === questionArray.en">
           <p class="question-card" @click="okJudgement">
-            <!-- <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br> -->
+            <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
             {{ questionArray.list[randomeAnswerNumber] }}
           </p>
           <transition
             name="answerCard"
           >
             <div v-if="okFlag" class="answer-card" @click="okAnswer">
-              <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
-              {{ questionArray.list[randomeAnswerNumber] }}<br>
+              <p class="ok-text">
+                ☆せいかい☆
+                <span>◎</span>
+              </p>
+              <p class="ok-image">
+                <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)">
+                {{ questionArray.list[randomeAnswerNumber] }}
+              </p>
               <p class="btn-next">
                 つぎのもんだい
               </p>
@@ -26,7 +32,7 @@
         </template>
         <template v-else>
           <p ref="ngAnswers" class="question-card ng" @click="ngAnswer">
-            <!-- <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br> -->
+            <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
             {{ questionArray.list[randomeAnswerNumber] }}
           </p>
         </template>
@@ -139,23 +145,26 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  position: relative;
+}
 .question-text{
   padding: 1em 0;
   font-size: 20px;
   text-align: center;
-}
-.question-text span{
-  display: block;
-  padding-top: .5em;
-  font-size: 64px;
-  text-align: center;
-  line-height: 1;
+  span{
+    display: block;
+    padding-top: .5em;
+    font-size: 64px;
+    text-align: center;
+    line-height: 1;
+  }
 }
 .answer-list{
   list-style: none;
@@ -163,30 +172,97 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   width: 100%;
-}
-.answer-list li{
-  width: 45%;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px #efefef solid;
-  text-align: center;
-}
-.answer-list li img{
-  object-fit: contain;
-  width: auto;
-  max-width: 100%;
-  height: 200px;
-}
-.answer-list li p.active{
-  position: relative;
-}
-.answer-list li p.active::after{
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 0, 0, 0.7);
+  li{
+    width: 45%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px #efefef solid;
+    text-align: center;
+    img{
+      object-fit: contain;
+      width: auto;
+      max-width: 100%;
+      height: 150px;
+    }
+    p{
+      &.active{
+        position: relative;
+        &:after{
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(255, 0, 0, 0.7);
+        }
+      }
+    }
+    .answerCard-enter-active, .answerCard-leave-active { transition: opacity .5s; }
+    .answerCard-enter, .answerCard-leave-active { opacity: 0; }
+    .answer-card{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .7);
+      color: #fff;
+      .ok-text{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        span{
+          color: #80ed99;
+          font-size: 32px;
+        }
+      }
+      .ok-image{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px #efefef solid;
+      }
+      .btn-next{
+        position: relative;
+        padding: .5em 2em;
+        border: 1px #efefef solid;
+        border-radius: 10px;
+        &::before{
+          content: '';
+          position: absolute;
+          top: 1em;
+          right: 1em;
+          width: .5em;
+          height: 2px;
+          background-color: #fff;
+          transform: rotate(45deg);
+        }
+        &::after{
+          content: '';
+          position: absolute;
+          top: 1.3em;
+          right: 1em;
+          width: .5em;
+          height: 2px;
+          background-color: #fff;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
 }
 </style>
