@@ -8,14 +8,25 @@
     <ul class="answer-list">
       <li v-for="questionArray in shuffleArray" :key="questionArray.en" :class="questionArray.en">
         <template v-if="questionClassText === questionArray.en">
-          <p @click="okAnswer">
-            <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
+          <p class="question-card" @click="okJudgement">
+            <!-- <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br> -->
             {{ questionArray.list[randomeAnswerNumber] }}
           </p>
+          <transition
+            name="answerCard"
+          >
+            <div v-if="okFlag" class="answer-card" @click="okAnswer">
+              <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
+              {{ questionArray.list[randomeAnswerNumber] }}<br>
+              <p class="btn-next">
+                つぎのもんだい
+              </p>
+            </div>
+          </transition>
         </template>
         <template v-else>
-          <p ref="ngAnswers" class="ng" @click="ngAnswer">
-            <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
+          <p ref="ngAnswers" class="question-card ng" @click="ngAnswer">
+            <!-- <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br> -->
             {{ questionArray.list[randomeAnswerNumber] }}
           </p>
         </template>
@@ -39,7 +50,8 @@ export default {
       clickNg: [],
       newRandomArrayNumber: Number,
       randomeAnswerNumber: Number,
-      good: ''
+      good: '',
+      okFlag: false
     }
   },
   computed: {
@@ -100,6 +112,9 @@ export default {
       }
       return array
     },
+    okJudgement () {
+      this.okFlag = true
+    },
     okAnswer () {
       this.newRandomArrayNumber = Math.floor(Math.random() * this.getBaseArray.length)
       this.randomeAnswerNumber = Math.floor(Math.random() * 3)
@@ -111,10 +126,10 @@ export default {
       this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
       // answerNgLists.classList.remove('none')
       const ngAns = document.querySelectorAll('.active')
-      console.log(ngAns)
       ngAns.forEach(function (target) {
         target.classList.remove('active')
       })
+      this.okFlag = false
       // document.getElementById('ng').classList.remove('active')
     },
     ngAnswer (e) {
