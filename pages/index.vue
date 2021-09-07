@@ -1,16 +1,27 @@
 <template>
   <div>
+    <header>
+      <div class="level-toggle-switch" :class="{'hard': hardMode}" @click="levelChange">
+        <button><span>れべる</span></button>
+        <p v-if="hardMode">
+          むずかしい
+        </p>
+        <p v-else>
+          かんたん
+        </p>
+      </div>
+    </header>
     <p class="question-text" :class="questionClassText">
       したのひらがなからはじまる<br>
       えをえらぼう！<br>
       <span>{{ questionText }}</span>
     </p>
-    <ul class="answer-list">
+    <ul class="answer-list" :class="{'hard': hardMode}">
       <li v-for="questionArray in shuffleArray" :key="questionArray.en" :class="questionArray.en">
         <template v-if="questionClassText === questionArray.en">
           <p class="question-card" @click="okJudgement">
-            <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
-            {{ questionArray.list[randomeAnswerNumber] }}
+            <img class="question-img" :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
+            <span v-if="!hardMode" class="hint-text">{{ questionArray.list[randomeAnswerNumber] }}</span>
           </p>
           <transition
             name="answerCard"
@@ -32,8 +43,8 @@
         </template>
         <template v-else>
           <p ref="ngAnswers" class="question-card ng" @click="ngAnswer">
-            <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
-            {{ questionArray.list[randomeAnswerNumber] }}
+            <img class="question-img" :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)"><br>
+            <span v-if="!hardMode" class="hint-text">{{ questionArray.list[randomeAnswerNumber] }}</span>
           </p>
         </template>
       </li>
@@ -57,7 +68,8 @@ export default {
       newRandomArrayNumber: Number,
       randomeAnswerNumber: Number,
       good: '',
-      okFlag: false
+      okFlag: false,
+      hardMode: false
     }
   },
   computed: {
@@ -95,6 +107,9 @@ export default {
     this.intoAnswers()
   },
   methods: {
+    levelChange () {
+      this.hardMode = !this.hardMode
+    },
     // データを取得して代入
     intoData () {
       this.questionText = this.question
@@ -154,13 +169,58 @@ export default {
 body{
   position: relative;
 }
+header{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  .level-toggle-switch{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    button{
+      position: relative;
+      width: 60px;
+      height: 30px;
+      border: none;
+      border-radius: 12px;
+      background-color: #57cc99;
+      transition: background .4s ease;
+      span{
+        display: none;
+      }
+      &::after{
+        content: "";
+        position: absolute;
+        right: 33px;
+        top: 3px;
+        width: 24px;
+        height: 24px;
+        border-radius: 100%;
+        background-color: #fff;
+        transition: right .4s ease;
+      }
+    }
+    p{
+      font-size: 12px;
+    }
+    &.hard{
+      button{
+        background-color: #e05d5d;
+        &::after{
+          right: 3px;
+        }
+      }
+    }
+  }
+}
 .question-text{
-  padding: 1em 0;
+  padding: .5em 0;
   font-size: 20px;
   text-align: center;
   span{
     display: block;
-    padding-top: .5em;
+    padding-top: .2em;
     font-size: 64px;
     text-align: center;
     line-height: 1;
@@ -263,6 +323,75 @@ body{
         }
       }
     }
+  }
+  &.hard{
+    li{
+      &:nth-child(1){
+        .question-img{
+          filter: blur(0);
+          animation: blur1 3s infinite;
+        }
+      }
+      &:nth-child(2){
+        .question-img{
+          filter: blur(0);
+          animation: blur2 3s infinite;
+        }
+      }
+      &:nth-child(3){
+        .question-img{
+          filter: blur(0);
+          animation: blur3 3s infinite;
+        }
+      }
+      &:nth-child(4){
+        .question-img{
+          filter: blur(0);
+          animation: blur1 4s infinite;
+        }
+      }
+    }
+  }
+}
+@keyframes blur1 {
+  0%{
+    filter: blur(0)
+  }
+  50%{
+    filter: blur(10px)
+  }
+}
+@keyframes blur2 {
+  0%{
+    filter: blur(0)
+  }
+  30%{
+    filter: blur(0)
+  }
+  80%{
+    filter: blur(10px)
+  }
+}
+@keyframes blur3 {
+  0%{
+    filter: blur(0)
+  }
+  20%{
+    filter: blur(0)
+  }
+  70%{
+    filter: blur(10px)
+  }
+}
+@keyframes blur4 {
+  0%{
+    filter: blur(0)
+  }
+  10%{
+    filter: blur(0)
+  }
+  60%{
+    filter: blur(10px)
   }
 }
 </style>
