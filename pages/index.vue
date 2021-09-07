@@ -1,6 +1,12 @@
 <template>
   <div>
     <header>
+      <p v-if="level < 1" class="your-level">
+        あなたのレベル：<strong>0</strong>
+      </p>
+      <p v-else class="your-level">
+        あなたのレベル：<strong>{{ level }}</strong>
+      </p>
       <div class="level-toggle-switch" :class="{'hard': hardMode}" @click="levelChange">
         <button><span>れべる</span></button>
         <p v-if="hardMode">
@@ -26,7 +32,7 @@
           <transition
             name="answerCard"
           >
-            <div v-if="okFlag" class="answer-card" @click="okAnswer">
+            <div v-if="okFlag && !levelUpFlag" class="answer-card" @click="okAnswer">
               <p class="ok-text">
                 ☆せいかい☆
                 <span>◎</span>
@@ -35,6 +41,21 @@
                 <img :src="require(`~/assets/img/${questionArray.src[randomeAnswerNumber]}.png`)">
                 {{ questionArray.list[randomeAnswerNumber] }}
               </p>
+              <p class="btn-next">
+                つぎのもんだい
+              </p>
+            </div>
+            <div v-else-if="okFlag && levelUpFlag" class="answer-card levelup" @click="okAnswer">
+              <div class="ok-text">
+                <p class="now-level">
+                  <span class="star">★</span>レベルアップ<span class="star">★</span>
+                </p>
+                <span>{{ level }}</span>
+                <p class="next-level">
+                  つぎのれべるまで<br>
+                  <span>{{ nextLevelNumber }}</span>かいれんぞくでせいかい！
+                </p>
+              </div>
               <p class="btn-next">
                 つぎのもんだい
               </p>
@@ -68,7 +89,12 @@ export default {
       newRandomArrayNumber: Number,
       randomeAnswerNumber: Number,
       okFlag: false,
-      hardMode: false
+      hardMode: false,
+      okCount: 0,
+      yourLevel: 1,
+      level: 1,
+      nextLevel: Number,
+      levelUpFlag: false
     }
   },
   computed: {
@@ -99,6 +125,12 @@ export default {
     // 0-2の乱数
     randomNumber () {
       return Math.floor(Math.random() * 3)
+    },
+    nextLevelNumber () {
+      return 5 + this.level
+    },
+    getLevel () {
+      return JSON.parse(localStorage.getItem('level'))
     }
   },
   mounted () {
@@ -118,6 +150,7 @@ export default {
     },
     // 初期にマウントするためのメソッド
     intoAnswers () {
+      this.level = this.getLevel
       this.sliceArray = this.notAnswerArrays.slice(0, 3)
       this.concatArray = this.sliceArray.concat(this.getBaseArray[this.getRandomArrayNumber])
       this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
@@ -134,6 +167,14 @@ export default {
     },
     okJudgement () {
       this.okFlag = true
+      this.okCount += 1
+      if (this.nextLevelNumber === this.okCount) {
+        this.levelUpFlag = true
+        this.okCount = 0
+        this.level += 1
+        localStorage.setItem('level', this.level)
+        this.level = JSON.parse(localStorage.getItem('level'))
+      }
     },
     okAnswer () {
       this.newRandomArrayNumber = Math.floor(Math.random() * this.getBaseArray.length)
@@ -149,15 +190,17 @@ export default {
         target.classList.remove('active')
       })
       this.okFlag = false
+      this.levelUpFlag = false
     },
     ngAnswer (e) {
       e.currentTarget.className = 'active'
+      this.okCount = 0
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 *{
   margin: 0;
   padding: 0;
@@ -165,11 +208,17 @@ export default {
 }
 body{
   position: relative;
+  margin: 0;
+  height: 100%;
 }
 header{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
   .level-toggle-switch{
     display: flex;
     flex-wrap: wrap;
@@ -239,7 +288,7 @@ header{
       object-fit: contain;
       width: auto;
       max-width: 100%;
-      height: 150px;
+      height: 120px;
     }
     p{
       &.active{
@@ -317,6 +366,21 @@ header{
           height: 2px;
           background-color: #fff;
           transform: rotate(-45deg);
+        }
+      }
+      &.levelup{
+        background-color: rgba(254, 251, 243, .9);
+        color: #9d9d9d;
+        .ok-text{
+          span{
+            color: #79b4b7;
+          }
+          .next-level{
+            padding: .5em 0 1em;
+          }
+        }
+        .btn-next{
+          border: 1px #79b4b7 solid;
         }
       }
     }
