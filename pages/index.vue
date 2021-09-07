@@ -67,7 +67,6 @@ export default {
       clickNg: [],
       newRandomArrayNumber: Number,
       randomeAnswerNumber: Number,
-      good: '',
       okFlag: false,
       hardMode: false
     }
@@ -145,13 +144,11 @@ export default {
       this.sliceArray = this.notAnswerArray.slice(0, 3)
       this.concatArray = this.sliceArray.concat(this.getBaseArray[this.newRandomArrayNumber])
       this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
-      // answerNgLists.classList.remove('none')
       const ngAns = document.querySelectorAll('.active')
       ngAns.forEach(function (target) {
         target.classList.remove('active')
       })
       this.okFlag = false
-      // document.getElementById('ng').classList.remove('active')
     },
     ngAnswer (e) {
       e.currentTarget.className = 'active'
