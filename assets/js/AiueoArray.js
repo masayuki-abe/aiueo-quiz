@@ -5,7 +5,12 @@ const aiueoArray = [
     list: [
       'あひる',
       'あり',
-      'あな'
+      'あいす'
+    ],
+    src: [
+      'ahiru',
+      'ari',
+      'aisu'
     ]
   },
   {
@@ -14,7 +19,12 @@ const aiueoArray = [
     list: [
       'いるか',
       'いか',
-      'いし'
+      'いす'
+    ],
+    src: [
+      'iruka',
+      'ika',
+      'isu'
     ]
   },
   {
@@ -24,6 +34,11 @@ const aiueoArray = [
       'うし',
       'うま',
       'うさぎ'
+    ],
+    src: [
+      'ushi',
+      'uma',
+      'usagi'
     ]
   },
   {
@@ -33,6 +48,11 @@ const aiueoArray = [
       'えんぴつ',
       'えのぐ',
       'えんとつ'
+    ],
+    src: [
+      'enpitsu',
+      'enogu',
+      'entotsu'
     ]
   },
   {
@@ -42,6 +62,11 @@ const aiueoArray = [
       'おに',
       'おにぎり',
       'おの'
+    ],
+    src: [
+      'oni',
+      'onigiri',
+      'ono'
     ]
   }
 ]
