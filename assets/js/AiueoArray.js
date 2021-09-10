@@ -215,404 +215,404 @@ const aiueoArray = [
     list: [
       'たぬき',
       'たおる',
-      'たつまき'
+      'たいこ'
     ],
     src: [
       'taoru',
       'tanuki',
-      'tatsumaki'
+      'taiko'
     ]
   },
   {
     ja: 'ち',
     en: 'chi',
     list: [
-      'いるか',
-      'いか',
-      'いす'
+      'ちくわ',
+      'ちょうちょ',
+      'ちず'
     ],
     src: [
-      'iruka',
-      'ika',
-      'isu'
+      'chikuwa',
+      'chocho',
+      'chizu'
     ]
   },
   {
     ja: 'つ',
     en: 'tsu',
     list: [
-      'うし',
-      'うま',
-      'うさぎ'
+      'つみき',
+      'つくえ',
+      'つの'
     ],
     src: [
-      'ushi',
-      'uma',
-      'usagi'
+      'tsumiki',
+      'tsukue',
+      'tsuno'
     ]
   },
   {
     ja: 'て',
     en: 'te',
     list: [
-      'えんぴつ',
-      'えのぐ',
-      'えんとつ'
+      'てぶくろ',
+      'てがみ',
+      'てんとうむし'
     ],
     src: [
-      'enpitsu',
-      'enogu',
-      'entotsu'
+      'tebukuro',
+      'tegami',
+      'tentomushi'
     ]
   },
   {
     ja: 'と',
     en: 'to',
     list: [
-      'おに',
-      'おにぎり',
-      'おの'
+      'とんぼ',
+      'とかげ',
+      'とけい'
     ],
     src: [
-      'oni',
-      'onigiri',
-      'ono'
+      'tonbo',
+      'tokage',
+      'tokei'
     ]
   },
   {
     ja: 'な',
     en: 'na',
     list: [
-      'あひる',
-      'あり',
-      'あいす'
+      'なす',
+      'なわとび',
+      'なっとう'
     ],
     src: [
-      'ahiru',
-      'ari',
-      'aisu'
+      'nasu',
+      'nawatobi',
+      'natto'
     ]
   },
   {
     ja: 'に',
     en: 'ni',
     list: [
-      'いるか',
-      'いか',
-      'いす'
+      'にんじゃ',
+      'にわ',
+      'にんぎょ'
     ],
     src: [
-      'iruka',
-      'ika',
-      'isu'
+      'ninja',
+      'niwa',
+      'ningyo'
     ]
   },
   {
     ja: 'ぬ',
     en: 'nu',
     list: [
-      'うし',
-      'うま',
-      'うさぎ'
+      'ぬりえ',
+      'ぬいぐるみ',
+      'ぬま'
     ],
     src: [
-      'ushi',
-      'uma',
-      'usagi'
+      'nurie',
+      'nuigurumi',
+      'numa'
     ]
   },
   {
     ja: 'ね',
     en: 'ne',
     list: [
-      'えんぴつ',
-      'えのぐ',
-      'えんとつ'
+      'ねこ',
+      'ねんど',
+      'ねくたい'
     ],
     src: [
-      'enpitsu',
-      'enogu',
-      'entotsu'
+      'neko',
+      'nendo',
+      'nekutai'
     ]
   },
   {
     ja: 'の',
     en: 'no',
     list: [
-      'おに',
-      'おにぎり',
-      'おの'
+      'のりまき',
+      'のこぎり',
+      'のっぺらぼう'
     ],
     src: [
-      'oni',
-      'onigiri',
-      'ono'
+      'norimaki',
+      'nokogiri',
+      'nopperabo'
     ]
   },
   {
     ja: 'は',
     en: 'ha',
     list: [
-      'あひる',
-      'あり',
-      'あいす'
+      'はさみ',
+      'はし',
+      'はなび'
     ],
     src: [
-      'ahiru',
-      'ari',
-      'aisu'
+      'hasami',
+      'hashi',
+      'hanabi'
     ]
   },
   {
     ja: 'ひ',
     en: 'hi',
     list: [
-      'いるか',
-      'いか',
-      'いす'
+      'ひまわり',
+      'ひとで',
+      'ひげ'
     ],
     src: [
-      'iruka',
-      'ika',
-      'isu'
+      'himawari',
+      'hitode',
+      'hige'
     ]
   },
   {
     ja: 'ふ',
     en: 'fu',
     list: [
-      'うし',
-      'うま',
-      'うさぎ'
+      'ふね',
+      'ふうせん',
+      'ふえ'
     ],
     src: [
-      'ushi',
-      'uma',
-      'usagi'
+      'fune',
+      'fusen',
+      'fue'
     ]
   },
   {
     ja: 'へ',
     en: 'he',
     list: [
-      'えんぴつ',
-      'えのぐ',
-      'えんとつ'
+      'へび',
+      'へりこぷたー',
+      'へいたい'
     ],
     src: [
-      'enpitsu',
-      'enogu',
-      'entotsu'
+      'hebi',
+      'herikoputa',
+      'heitai'
     ]
   },
   {
     ja: 'ほ',
     en: 'ho',
     list: [
-      'おに',
-      'おにぎり',
-      'おの'
+      'ほたる',
+      'ほうちょう',
+      'ほっとけーき'
     ],
     src: [
-      'oni',
-      'onigiri',
-      'ono'
+      'hotaru',
+      'hocho',
+      'hottokeki'
     ]
   },
   {
     ja: 'ま',
     en: 'ma',
     list: [
-      'あひる',
-      'あり',
-      'あいす'
+      'ますく',
+      'まいく',
+      'まじょ'
     ],
     src: [
-      'ahiru',
-      'ari',
-      'aisu'
+      'masuku',
+      'maiku',
+      'majo'
     ]
   },
   {
     ja: 'み',
     en: 'mi',
     list: [
-      'いるか',
-      'いか',
-      'いす'
+      'みみ',
+      'みかん',
+      'みみず'
     ],
     src: [
-      'iruka',
-      'ika',
-      'isu'
+      'mimi',
+      'mikan',
+      'mimizu'
     ]
   },
   {
     ja: 'む',
     en: 'mu',
     list: [
-      'うし',
-      'うま',
-      'うさぎ'
+      'むしかご',
+      'むぎわらぼうし',
+      'むしば'
     ],
     src: [
-      'ushi',
-      'uma',
-      'usagi'
+      'mushikago',
+      'mugiwaraboshi',
+      'mushiba'
     ]
   },
   {
     ja: 'め',
     en: 'me',
     list: [
-      'えんぴつ',
-      'えのぐ',
-      'えんとつ'
+      'めがね',
+      'めだまやき',
+      'めりーごーらんど'
     ],
     src: [
-      'enpitsu',
-      'enogu',
-      'entotsu'
+      'megane',
+      'medamayaki',
+      'merigorando'
     ]
   },
   {
     ja: 'も',
     en: 'mo',
     list: [
-      'おに',
-      'おにぎり',
-      'おの'
+      'もも',
+      'もぐら',
+      'もやし'
     ],
     src: [
-      'oni',
-      'onigiri',
-      'ono'
+      'momo',
+      'mogura',
+      'moyashi'
     ]
   },
   {
     ja: 'ら',
     en: 'ra',
     list: [
-      'あひる',
-      'あり',
-      'あいす'
+      'らーめん',
+      'らっぱ',
+      'らくだ'
     ],
     src: [
-      'ahiru',
-      'ari',
-      'aisu'
+      'ramen',
+      'rappa',
+      'rakuda'
     ]
   },
   {
     ja: 'り',
     en: 'ri',
     list: [
-      'いるか',
-      'いか',
-      'いす'
+      'りす',
+      'りんご',
+      'りょうり'
     ],
     src: [
-      'iruka',
-      'ika',
-      'isu'
+      'risu',
+      'ringo',
+      'ryori'
     ]
   },
   {
     ja: 'る',
     en: 'ru',
     list: [
-      'うし',
-      'うま',
-      'うさぎ'
+      'るーびっくきゅーぶ',
+      'るびー',
+      'るーれっと'
     ],
     src: [
-      'ushi',
-      'uma',
-      'usagi'
+      'rubikkukyubu',
+      'rubi',
+      'ruretto'
     ]
   },
   {
     ja: 'れ',
     en: 're',
     list: [
-      'えんぴつ',
-      'えのぐ',
-      'えんとつ'
+      'れんこん',
+      'れいぞうこ',
+      'れもん'
     ],
     src: [
-      'enpitsu',
-      'enogu',
-      'entotsu'
+      'renkon',
+      'reizoko',
+      'remon'
     ]
   },
   {
     ja: 'ろ',
     en: 'ro',
     list: [
-      'おに',
-      'おにぎり',
-      'おの'
+      'ろぼっと',
+      'ろうそく',
+      'ろうや'
     ],
     src: [
-      'oni',
-      'onigiri',
-      'ono'
+      'robotto',
+      'rosoku',
+      'roya'
     ]
   },
   {
     ja: 'や',
     en: 'ya',
     list: [
-      'あひる',
-      'あり',
-      'あいす'
+      'やかん',
+      'やぎ',
+      'やきゅう'
     ],
     src: [
-      'ahiru',
-      'ari',
-      'aisu'
+      'yakan',
+      'yagi',
+      'yakyu'
     ]
   },
   {
     ja: 'ゆ',
     en: 'yu',
     list: [
-      'うし',
-      'うま',
-      'うさぎ'
+      'ゆうれい',
+      'ゆきだるま',
+      'ゆびきり'
     ],
     src: [
-      'ushi',
-      'uma',
-      'usagi'
+      'yurei',
+      'yukidaruma',
+      'yubikiri'
     ]
   },
   {
     ja: 'よ',
     en: 'yo',
     list: [
-      'おに',
-      'おにぎり',
-      'おの'
+      'ようせい',
+      'よーよー',
+      'よっと'
     ],
     src: [
-      'oni',
-      'onigiri',
-      'ono'
+      'yosei',
+      'yoyo',
+      'yotto'
     ]
   },
   {
     ja: 'わ',
     en: 'wa',
     list: [
-      'あひる',
-      'あり',
-      'あいす'
+      'わなげ',
+      'わに',
+      'わさび'
     ],
     src: [
-      'ahiru',
-      'ari',
-      'aisu'
+      'wanage',
+      'wani',
+      'wasabi'
     ]
   }
 ]
