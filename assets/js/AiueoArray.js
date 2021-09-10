@@ -159,12 +159,12 @@ const aiueoArray = [
     list: [
       'しか',
       'しまうま',
-      'した'
+      'しーそー'
     ],
     src: [
       'shika',
       'shimauma',
-      'shita'
+      'shiso'
     ]
   },
   {
@@ -173,12 +173,12 @@ const aiueoArray = [
     list: [
       'すずめ',
       'すいか',
-      'すいとう'
+      'すきー'
     ],
     src: [
       'suzume',
       'suika',
-      'suito'
+      'suki'
     ]
   },
   {
@@ -186,12 +186,12 @@ const aiueoArray = [
     en: 'se',
     list: [
       'せみ',
-      'せなか',
+      'せろり',
       'せき'
     ],
     src: [
       'semi',
-      'senaka',
+      'serori',
       'seki'
     ]
   },
@@ -243,12 +243,12 @@ const aiueoArray = [
     list: [
       'つみき',
       'つくえ',
-      'つの'
+      'つき'
     ],
     src: [
       'tsumiki',
       'tsukue',
-      'tsuno'
+      'tsuki'
     ]
   },
   {
@@ -298,12 +298,12 @@ const aiueoArray = [
     en: 'ni',
     list: [
       'にんじゃ',
-      'にわ',
+      'にわとり',
       'にんぎょ'
     ],
     src: [
       'ninja',
-      'niwa',
+      'niwatori',
       'ningyo'
     ]
   },
@@ -326,12 +326,12 @@ const aiueoArray = [
     en: 'ne',
     list: [
       'ねこ',
-      'ねんど',
+      'ねずみ',
       'ねくたい'
     ],
     src: [
       'neko',
-      'nendo',
+      'nezumi',
       'nekutai'
     ]
   },
@@ -339,12 +339,12 @@ const aiueoArray = [
     ja: 'の',
     en: 'no',
     list: [
-      'のりまき',
+      'のり',
       'のこぎり',
       'のっぺらぼう'
     ],
     src: [
-      'norimaki',
+      'nori',
       'nokogiri',
       'nopperabo'
     ]
@@ -369,12 +369,12 @@ const aiueoArray = [
     list: [
       'ひまわり',
       'ひとで',
-      'ひげ'
+      'ひげそり'
     ],
     src: [
       'himawari',
       'hitode',
-      'hige'
+      'higesori'
     ]
   },
   {
@@ -481,12 +481,12 @@ const aiueoArray = [
     list: [
       'もも',
       'もぐら',
-      'もやし'
+      'もち'
     ],
     src: [
       'momo',
       'mogura',
-      'moyashi'
+      'mochi'
     ]
   },
   {
