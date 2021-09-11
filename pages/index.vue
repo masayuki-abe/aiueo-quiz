@@ -82,6 +82,7 @@ export default {
       questionText: '', // 問題になる五十音
       questionClassText: '', // 問題になる五十音と正解を紐付けるためのclass
       notAnswerArray: [],
+      notAnswerArraysShuffle: [],
       sliceArray: [],
       concatArray: [],
       shuffleArray: [],
@@ -120,7 +121,8 @@ export default {
     // 抽出した配列番号以外の配列を取得
     notAnswerArrays () {
       const notAnswerArrays = this.getBaseArray.filter((_, index) => index !== this.getRandomArrayNumber)
-      return notAnswerArrays
+      const notAnswerArraysShuffle = this.shuffle(notAnswerArrays).slice(0, 4)
+      return notAnswerArraysShuffle
     },
     // 0-2の乱数
     randomNumber () {
@@ -151,9 +153,9 @@ export default {
     // 初期にマウントするためのメソッド
     intoAnswers () {
       this.level = this.getLevel
-      this.sliceArray = this.notAnswerArrays.slice(0, 3)
+      this.sliceArray = this.shuffle(this.notAnswerArrays).slice(0, 3)
       this.concatArray = this.sliceArray.concat(this.getBaseArray[this.getRandomArrayNumber])
-      this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
+      this.shuffleArray = this.shuffle(this.concatArray)
     },
     // 配列をランダムに並び替えるメソッド
     shuffle (array) {
@@ -182,7 +184,8 @@ export default {
       this.questionText = this.getBaseArray[this.newRandomArrayNumber].ja
       this.questionClassText = this.getBaseArray[this.newRandomArrayNumber].en
       this.notAnswerArray = this.getBaseArray.filter((_, index) => index !== this.newRandomArrayNumber)
-      this.sliceArray = this.notAnswerArray.slice(0, 3)
+      this.notAnswerArraysShuffle = this.shuffle(this.notAnswerArray).slice(0, 4)
+      this.sliceArray = this.notAnswerArraysShuffle.slice(0, 3)
       this.concatArray = this.sliceArray.concat(this.getBaseArray[this.newRandomArrayNumber])
       this.shuffleArray = this.shuffle(this.concatArray).slice(0, 4)
       const ngAns = document.querySelectorAll('.active')
